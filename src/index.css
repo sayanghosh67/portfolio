@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --color-red-accent: #ff0000;
+  --font-anton: "Anton", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-marker: "Permanent Marker", cursive;
+}
+
+@layer base {
+  body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: var(--font-inter);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Custom Selection */
+::selection {
+  background: #ff0000;
+  color: #fff;
+}
+
+/* Hide scrollbar for clean design */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Utilities for visual elements */
+@layer utilities {
+  .text-shadow-glitch {
+    text-shadow: 2px 2px #ff0000, -2px -2px #00ffff;
+  }
+  .clip-paper {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 98% 92%, 95% 88%, 90% 95%, 85% 90%, 80% 96%, 75% 89%, 70% 94%, 65% 88%, 60% 95%, 55% 89%, 50% 96%, 45% 90%, 40% 95%, 35% 88%, 30% 94%, 25% 89%, 20% 95%, 15% 88%, 10% 96%, 5% 90%, 0% 95%);
+  }
+}
