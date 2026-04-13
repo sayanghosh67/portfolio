@@ -17,9 +17,9 @@ export default function Contact() {
         <div className="mt-16 flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
           {/* Contact info */}
           <div className="space-y-4">
-            <a href="mailto:hello@sayanghosh.dev" className="group flex items-center gap-3 text-xl md:text-2xl font-inter font-bold text-white hover:text-red-500 transition-colors">
+            <a href="mailto:iemsayanghosh@gmail.com" className="group flex items-center gap-3 text-xl md:text-2xl font-inter font-bold text-white hover:text-red-500 transition-colors">
               <Mail size={24} />
-              hello@sayanghosh.dev
+              iemsayanghosh@gmail.com
               <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
             <p className="text-neutral-500 font-inter text-lg">Based in India · Available Worldwide</p>

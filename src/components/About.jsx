@@ -22,7 +22,7 @@ export default function About() {
         {/* Sayan's actual photo */}
         <div className="relative z-10 w-[300px] h-[420px] overflow-hidden transform rotate-3 shadow-2xl">
           <img
-            src="/sayan.jpg"
+            src={`${import.meta.env.BASE_URL}sayan.jpg`}
             alt="Sayan Ghosh - Full Stack Developer"
             className="w-full h-full object-cover object-top"
           />

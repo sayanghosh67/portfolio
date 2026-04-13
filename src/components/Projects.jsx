@@ -25,7 +25,7 @@ const projects = [
     category: 'AI PROJECT',
     description: 'Flutter app that converts handwritten notes into structured mind maps using OCR and AI processing via Groq Vision API.',
     tech: 'Flutter • Groq AI • OCR • Firebase',
-    image: '/mindmap-project.png',
+    image: `${import.meta.env.BASE_URL}mindmap-project.png`,
     live: '#',
     github: 'https://github.com/sayanghosh67/ai-mind-map',
   },
