@@ -44,6 +44,7 @@ export default function Contact() {
             <form action="https://formsubmit.co/iemsayanghosh@gmail.com" method="POST" className="space-y-6 flex flex-col font-inter">
               <input type="hidden" name="_subject" value="New Contact from Portfolio Website" />
               <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value="https://sayanghosh67.github.io/portfolio/" />
               <div>
                 <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 font-bold">Your Name</label>
                 <input type="text" name="name" required placeholder="John Doe" className="w-full bg-black border-b-2 border-neutral-700 text-white p-3 focus:outline-none focus:border-red-500 transition-colors" />
