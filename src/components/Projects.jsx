@@ -12,13 +12,13 @@ const projects = [
     github: 'https://github.com/sayanghosh67/',
   },
   {
-    title: 'Weather Dashboard',
+    title: 'Aervion — Weather Dashboard',
     category: 'API PROJECT',
     description: 'Built to provide immediate meteorological insights. Implemented asynchronous data fetching from OpenWeatherMap API, handling dynamic UI updates and location tracking efficiently.',
     tech: ['JavaScript', 'REST API', 'CSS3', 'HTML5'],
     image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&q=80&w=800',
-    live: '#',
-    github: 'https://github.com/sayanghosh67/',
+    live: 'https://sayanghosh67.github.io/AERVION/',
+    github: 'https://github.com/sayanghosh67/AERVION',
   },
   {
     title: 'AI Mind Map Generator',
