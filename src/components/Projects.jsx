@@ -5,8 +5,8 @@ const projects = [
   {
     title: '3D Portfolio Website',
     category: 'FRONTEND DEVELOPMENT',
-    description: 'A high-performance 3D portfolio built with React, GSAP, and Three.js featuring smooth animations and interactive UI.',
-    tech: 'React • Tailwind • GSAP • Three.js',
+    description: 'Developed to establish a strong professional identity. Solved performance bottlenecks in complex 3D rendering by optimizing Three.js configurations, resulting in a highly interactive, 60fps web experience.',
+    tech: ['React', 'Tailwind', 'GSAP', 'Three.js'],
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
     live: '#',
     github: 'https://github.com/sayanghosh67/',
@@ -14,17 +14,17 @@ const projects = [
   {
     title: 'Weather Dashboard',
     category: 'API PROJECT',
-    description: 'Real-time weather app using OpenWeatherMap API with dynamic UI updates, location tracking, and animated visualizations.',
-    tech: 'JavaScript • REST API • CSS3',
+    description: 'Built to provide immediate meteorological insights. Implemented asynchronous data fetching from OpenWeatherMap API, handling dynamic UI updates and location tracking efficiently.',
+    tech: ['JavaScript', 'REST API', 'CSS3', 'HTML5'],
     image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&q=80&w=800',
     live: '#',
     github: 'https://github.com/sayanghosh67/',
   },
   {
     title: 'AI Mind Map Generator',
-    category: 'AI PROJECT',
-    description: 'Flutter app that converts handwritten notes into structured mind maps using OCR and AI processing via Groq Vision API.',
-    tech: 'Flutter • Groq AI • OCR • Firebase',
+    category: 'AI / MOBILE APP',
+    description: 'Created to enhance productivity for students by converting handwritten notes into structured data. Used OCR and Groq Vision AI to process notes and auto-generate interactive mind maps.',
+    tech: ['Flutter', 'Groq AI', 'OCR', 'Firebase'],
     image: `${import.meta.env.BASE_URL}mindmap-project.png`,
     live: '#',
     github: 'https://github.com/sayanghosh67/ai-mind-map',
@@ -32,9 +32,9 @@ const projects = [
   {
     title: 'ShadeXFlow — Smart Window',
     category: 'IoT / HARDWARE',
-    description: 'ESP32-powered smart window system with rain detection, servo motor control, and a real-time web dashboard.',
-    tech: 'ESP32 • Node.js • WebSocket • HTML',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=800',
+    description: 'Engineered a real-world automation system. Integrated rain detection and servo motor controls via ESP32, managed synchronously through a real-time WebSocket dashboard over a local network.',
+    tech: ['ESP32', 'Node.js', 'WebSocket', 'C++', 'IoT'],
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
     live: 'https://project-hrhh2.vercel.app',
     github: 'https://github.com/sayanghosh67/shadexflow',
   },
@@ -107,16 +107,25 @@ function ProjectCard({ project, index }) {
       <div className="pt-6 pb-4">
         <p className="text-xs md:text-sm font-inter font-bold tracking-[0.3em] text-red-500 mb-2">{project.category}</p>
         <h3 className="text-2xl md:text-4xl font-anton uppercase text-white group-hover:text-red-500 transition-colors duration-300">{project.title}</h3>
-        <p className="text-sm md:text-base font-inter text-neutral-400 mt-3 max-w-sm">{project.description}</p>
-        <p className="text-xs text-neutral-500 font-inter mt-2 tracking-wider">{project.tech}</p>
+        
+        {/* Tech Stack Tags */}
+        <div className="flex flex-wrap gap-2 mt-3 mb-3">
+          {project.tech.map((t, i) => (
+            <span key={i} className="text-xs font-inter font-bold bg-neutral-900 border border-neutral-700 text-neutral-300 px-2 py-1 uppercase tracking-wider">
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <p className="text-sm md:text-base font-inter text-neutral-400 mt-2 max-w-sm line-clamp-3 group-hover:line-clamp-none transition-all duration-300">{project.description}</p>
 
         {/* Action buttons */}
-        <div className="mt-5 flex gap-4">
+        <div className="mt-6 flex flex-wrap gap-4">
           <a
             href={project.live}
             target="_blank"
             rel="noreferrer"
-            className="px-5 py-2 text-xs font-bold font-inter bg-red-500 text-white hover:bg-white hover:text-black transition-all duration-200 uppercase tracking-widest"
+            className="px-5 py-2.5 text-xs font-bold font-inter bg-red-500 text-white hover:bg-white hover:text-black transition-all duration-300 uppercase tracking-widest text-center"
           >
             Live Demo
           </a>
@@ -124,7 +133,7 @@ function ProjectCard({ project, index }) {
             href={project.github}
             target="_blank"
             rel="noreferrer"
-            className="px-5 py-2 text-xs font-bold font-inter border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-200 uppercase tracking-widest"
+            className="px-5 py-2.5 text-xs font-bold font-inter border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 uppercase tracking-widest text-center"
           >
             GitHub
           </a>
@@ -145,7 +154,7 @@ export default function Projects() {
 
       <div className="mb-20">
         <p className="font-marker text-2xl text-red-500 mb-4 -rotate-3">// my work</p>
-        <h2 className="text-7xl md:text-[10rem] font-anton uppercase text-white leading-none">
+        <h2 className="text-5xl md:text-[10rem] font-anton uppercase text-white leading-none">
           PRO<span className="text-red-500">JECTS</span>
         </h2>
       </div>

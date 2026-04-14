@@ -5,13 +5,13 @@ export default function About() {
     <section id="about" className="relative w-full min-h-screen bg-white text-black py-32 px-8 md:px-20 z-10 flex flex-col md:flex-row items-center justify-between">
       <div className="w-full md:w-1/2 space-y-8 z-10">
         <h2 className="text-6xl md:text-8xl font-anton uppercase underline decoration-red-500 decoration-8 underline-offset-8">About Me</h2>
-        <h3 className="text-2xl font-bold font-inter text-red-500">Full Stack Developer</h3>
+        <h3 className="text-2xl font-bold font-inter text-red-500">Software Developer & CSE (AI) Student</h3>
         <p className="text-lg md:text-xl max-w-lg font-inter font-medium text-neutral-700 leading-relaxed">
-          I am a <strong>Full Stack Developer</strong> passionate about building modern, scalable web applications and interactive user experiences.
+          I am a <strong>Computer Science Engineering (AI) student</strong> passionate about building modern, scalable software and extracting insights from data.
           <br /><br />
-          I specialize in <strong>React, Node.js</strong>, and frontend animation libraries like <strong>GSAP</strong> and <strong>Three.js</strong> to create visually engaging and high-performance applications.
+          My core strengths include <strong>Data Structures & Algorithms (DSA) using Java</strong>, Object-Oriented Programming (OOP), and full-stack development. I am proficient in <strong>Java, Python, C</strong>, and data tools like <strong>Power BI, Excel, and R Programming</strong>.
           <br /><br />
-          I focus on writing clean, maintainable code and solving real-world problems through technology.
+          I focus on writing clean, maintainable code and solving real-world problems with robust, high-performance solutions.
         </p>
       </div>
 

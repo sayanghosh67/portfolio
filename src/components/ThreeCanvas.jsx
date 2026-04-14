@@ -36,10 +36,11 @@ function FloatingShape() {
 export default function ThreeCanvas() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 opacity-60">
-      <Canvas camera={{ position: [0, 0, 10] }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ff0000" />
-        <pointLight position={[0, 0, 5]} intensity={2} color="red" />
+      <Canvas frameloop="demand" dpr={[1, 1.5]} camera={{ position: [0, 0, 10] }}>
+        <ambientLight intensity={0.3} />
+        <directionalLight position={[10, 10, 5]} intensity={1.2} color="#ff0000" />
+        <pointLight position={[0, 0, 5]} intensity={3} distance={20} color="#ff3333" />
+        <pointLight position={[-5, -5, -5]} intensity={1} color="#ff0000" />
         <Environment preset="city" />
         <FloatingShape />
       </Canvas>

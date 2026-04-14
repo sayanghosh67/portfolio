@@ -14,28 +14,52 @@ export default function Contact() {
           TOGETHER
         </h2>
 
-        <div className="mt-16 flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
+        <div className="mt-16 flex flex-col lg:flex-row items-start justify-between gap-16">
           {/* Contact info */}
-          <div className="space-y-4">
-            <a href="mailto:iemsayanghosh@gmail.com" className="group flex items-center gap-3 text-xl md:text-2xl font-inter font-bold text-white hover:text-red-500 transition-colors">
+          <div className="space-y-8 lg:w-1/2">
+            <a href="mailto:iemsayanghosh@gmail.com" className="group flex flex-wrap items-center gap-2 text-base md:text-2xl font-inter font-bold text-white hover:text-red-500 transition-colors break-all md:break-normal">
               <Mail size={24} />
               iemsayanghosh@gmail.com
               <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
             <p className="text-neutral-500 font-inter text-lg">Based in India · Available Worldwide</p>
+            
+            {/* Social icons */}
+            <div className="flex gap-6 mt-8">
+              <a href="https://github.com/sayanghosh67/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-red-500 hover:border-red-500 hover:scale-110 transition-all duration-300">
+                <FiGithub size={24} />
+              </a>
+              <a href="https://www.linkedin.com/in/sayan-ghosh97/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-red-500 hover:border-red-500 hover:scale-110 transition-all duration-300">
+                <FiLinkedin size={24} />
+              </a>
+              <a href="https://www.instagram.com/sayan_ghosh97/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-red-500 hover:border-red-500 hover:scale-110 transition-all duration-300">
+                <FiInstagram size={24} />
+              </a>
+            </div>
           </div>
 
-          {/* Social icons */}
-          <div className="flex gap-6">
-            <a href="https://github.com/sayanghosh67/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-red-500 hover:border-red-500 hover:scale-110 transition-all duration-300">
-              <FiGithub size={24} />
-            </a>
-            <a href="https://www.linkedin.com/in/sayan-ghosh97/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-red-500 hover:border-red-500 hover:scale-110 transition-all duration-300">
-              <FiLinkedin size={24} />
-            </a>
-            <a href="https://www.instagram.com/sayan_ghosh97/" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-red-500 hover:border-red-500 hover:scale-110 transition-all duration-300">
-              <FiInstagram size={24} />
-            </a>
+          {/* Contact Form */}
+          <div className="lg:w-1/2 w-full bg-neutral-900/50 p-8 border border-neutral-800 backdrop-blur-sm relative">
+            <div className="absolute top-0 right-0 w-8 h-8 bg-red-500 -translate-y-1/2 translate-x-1/2 rotate-12"></div>
+            <form action="https://formsubmit.co/iemsayanghosh@gmail.com" method="POST" className="space-y-6 flex flex-col font-inter">
+              <input type="hidden" name="_subject" value="New Contact from Portfolio Website" />
+              <input type="hidden" name="_captcha" value="false" />
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 font-bold">Your Name</label>
+                <input type="text" name="name" required placeholder="John Doe" className="w-full bg-black border-b-2 border-neutral-700 text-white p-3 focus:outline-none focus:border-red-500 transition-colors" />
+              </div>
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 font-bold">Email Address</label>
+                <input type="email" name="email" required placeholder="john@example.com" className="w-full bg-black border-b-2 border-neutral-700 text-white p-3 focus:outline-none focus:border-red-500 transition-colors" />
+              </div>
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 font-bold">Message</label>
+                <textarea rows="4" name="message" required placeholder="Tell me about your project..." className="w-full bg-black border-b-2 border-neutral-700 text-white p-3 focus:outline-none focus:border-red-500 transition-colors resize-none"></textarea>
+              </div>
+              <button type="submit" className="self-end px-8 py-3 bg-red-500 text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 mt-4">
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
 
