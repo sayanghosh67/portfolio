@@ -66,7 +66,7 @@ export default function Hero() {
             View Projects
           </button>
           <a
-            href="/resume.pdf"
+            href="https://sayanghosh67.github.io/resume.pdf"
             target="_blank"
             rel="noreferrer"
             className="inline-block px-7 py-3 border-2 border-white text-white font-bold font-inter text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300"
