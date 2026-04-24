@@ -1,7 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 
 const projects = [
+  {
+    title: 'NeXora Gadgets',
+    category: 'E-COMMERCE / BRANDING',
+    description: 'A high-end e-commerce experience featuring cinematic scroll animations, bidirectional product entrance/exit effects, and a modern design philosophy.',
+    tech: ['React', 'Tailwind', 'GSAP', 'Framer'],
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800',
+    live: 'https://sayanghosh67.github.io/NeXora-Gadgets/',
+    github: 'https://github.com/sayanghosh67/NeXora-Gadgets',
+  },
   {
     title: '3D Portfolio Website',
     category: 'FRONTEND DEVELOPMENT',
@@ -16,7 +25,7 @@ const projects = [
     category: 'API PROJECT',
     description: 'Built to provide immediate meteorological insights. Implemented asynchronous data fetching from OpenWeatherMap API, handling dynamic UI updates and location tracking efficiently.',
     tech: ['JavaScript', 'REST API', 'CSS3', 'HTML5'],
-    image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1601297183305-6df142704ea2?auto=format&fit=crop&q=80&w=800',
     live: 'https://sayanghosh67.github.io/AERVION/',
     github: 'https://github.com/sayanghosh67/AERVION',
   },
@@ -29,16 +38,8 @@ const projects = [
     live: '#',
     github: 'https://github.com/sayanghosh67/ai-mind-map',
   },
-  {
-    title: 'ShadeXFlow — Smart Window',
-    category: 'IoT / HARDWARE',
-    description: 'Engineered a real-world automation system. Integrated rain detection and servo motor controls via ESP32, managed synchronously through a real-time WebSocket dashboard over a local network.',
-    tech: ['ESP32', 'Node.js', 'WebSocket', 'C++', 'IoT'],
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
-    live: 'https://project-hrhh2.vercel.app',
-    github: 'https://github.com/sayanghosh67/shadexflow',
-  },
 ];
+
 
 function ProjectCard({ project, index }) {
   const cardRef = useRef(null);
@@ -146,7 +147,19 @@ function ProjectCard({ project, index }) {
   );
 }
 
+const shadexflow = {
+  title: 'ShadeXFlow — Smart Window',
+  category: 'IoT / HARDWARE',
+  description: 'Engineered a real-world automation system. Integrated rain detection and servo motor controls via ESP32, managed synchronously through a real-time WebSocket dashboard over a local network.',
+  tech: ['ESP32', 'Node.js', 'WebSocket', 'C++', 'IoT'],
+  image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
+  live: 'https://project-hrhh2.vercel.app',
+  github: 'https://github.com/sayanghosh67/shadexflow',
+};
+
 export default function Projects() {
+  const [showMore, setShowMore] = useState(false);
+
   return (
     <section id="projects" className="relative w-full bg-black py-32 px-8 md:px-20 z-10 overflow-hidden">
       {/* Torn paper top */}
@@ -166,10 +179,31 @@ export default function Projects() {
         ))}
       </div>
 
-      {/* Decorative sticker */}
-      <div className="absolute bottom-20 right-10 md:right-20 w-28 h-28 rounded-full bg-red-500 flex items-center justify-center rotate-12 shadow-[0_0_30px_rgba(255,0,0,0.4)] pointer-events-none">
-        <span className="font-marker text-white text-sm text-center leading-tight">VIEW<br />MORE<br />→</span>
+      {/* ShadeXFlow — revealed when VIEW MORE clicked */}
+      <div
+        style={{
+          maxHeight: showMore ? '900px' : '0px',
+          overflow: 'hidden',
+          transition: 'max-height 0.7s cubic-bezier(0.4,0,0.2,1)',
+        }}
+        className="max-w-6xl mx-auto"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 mt-16">
+          <ProjectCard project={shadexflow} index={0} />
+        </div>
       </div>
+
+      {/* VIEW MORE sticker — the actual toggle button */}
+      <button
+        onClick={() => setShowMore((v) => !v)}
+        className="absolute bottom-20 right-10 md:right-20 w-28 h-28 rounded-full bg-red-500 flex items-center justify-center shadow-[0_0_30px_rgba(255,0,0,0.5)] hover:scale-110 hover:rotate-0 transition-all duration-300 cursor-pointer z-50"
+        style={{ rotate: showMore ? '0deg' : '12deg' }}
+        aria-label="Toggle ShadeXFlow project"
+      >
+        <span className="font-marker text-white text-sm text-center leading-tight select-none">
+          {showMore ? 'SHOW\nLESS\n↑' : 'VIEW\nMORE\n→'}
+        </span>
+      </button>
     </section>
   );
 }

@@ -2,20 +2,20 @@ import React from 'react';
 
 const showcaseImages = [
   {
-    src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800',
-    label: 'ABSTRACT ART',
+    src: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800',
+    label: 'ALGORITHM DESIGN',
     rotation: '-3deg',
     offset: '0',
   },
   {
-    src: 'https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?auto=format&fit=crop&q=80&w=800',
-    label: 'WEB DESIGN',
+    src: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
+    label: 'AI INTEGRATION',
     rotation: '2deg',
     offset: '60px',
   },
   {
-    src: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800',
-    label: 'MOBILE APP',
+    src: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=800',
+    label: 'USER EXPERIENCE',
     rotation: '-1deg',
     offset: '20px',
   },

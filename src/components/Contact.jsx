@@ -1,8 +1,30 @@
-import React from 'react';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, ArrowUpRight, CheckCircle } from 'lucide-react';
 import { FiGithub, FiLinkedin, FiInstagram } from 'react-icons/fi';
 
 export default function Contact() {
+  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      await fetch('https://formsubmit.co/ajax/iemsayanghosh@gmail.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      });
+      setStatus('sent');
+      form.reset();
+    } catch {
+      setStatus('error');
+    }
+  };
+
   return (
     <section id="contact" className="relative w-full bg-black py-32 px-8 md:px-20 z-10 overflow-hidden border-t-4 border-red-500">
       {/* Huge heading */}
@@ -39,12 +61,34 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="lg:w-1/2 w-full bg-neutral-900/50 p-8 border border-neutral-800 backdrop-blur-sm relative">
+          <div className="lg:w-1/2 w-full bg-neutral-900/50 p-8 border border-neutral-800 backdrop-blur-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 w-8 h-8 bg-red-500 -translate-y-1/2 translate-x-1/2 rotate-12"></div>
-            <form action="https://formsubmit.co/iemsayanghosh@gmail.com" method="POST" className="space-y-6 flex flex-col font-inter">
+
+            {/* Success overlay */}
+            {status === 'sent' && (
+              <div
+                className="absolute inset-0 bg-black/95 backdrop-blur-sm z-10 flex flex-col items-center justify-center p-8"
+                style={{ animation: 'fadeIn 0.4s ease-out' }}
+              >
+                <div className="w-16 h-16 rounded-full bg-red-500/10 border-2 border-red-500 flex items-center justify-center mb-6">
+                  <CheckCircle size={32} className="text-red-500" />
+                </div>
+                <h3 className="font-anton text-3xl md:text-4xl text-white uppercase mb-3">Message Sent!</h3>
+                <p className="font-inter text-neutral-400 text-sm md:text-base text-center max-w-sm leading-relaxed">
+                  Your message has been delivered to <span className="text-red-500 font-bold">Sayan Ghosh</span>. You will receive a reply at your email soon.
+                </p>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="mt-8 px-6 py-2.5 border border-neutral-700 text-neutral-400 font-inter text-xs uppercase tracking-widest hover:border-red-500 hover:text-white transition-all duration-300 cursor-pointer"
+                >
+                  Send Another Message
+                </button>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6 flex flex-col font-inter">
               <input type="hidden" name="_subject" value="New Contact from Portfolio Website" />
               <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://sayanghosh67.github.io/portfolio/" />
               <div>
                 <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 font-bold">Your Name</label>
                 <input type="text" name="name" required placeholder="John Doe" className="w-full bg-black border-b-2 border-neutral-700 text-white p-3 focus:outline-none focus:border-red-500 transition-colors" />
@@ -57,8 +101,20 @@ export default function Contact() {
                 <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 font-bold">Message</label>
                 <textarea rows="4" name="message" required placeholder="Tell me about your project..." className="w-full bg-black border-b-2 border-neutral-700 text-white p-3 focus:outline-none focus:border-red-500 transition-colors resize-none"></textarea>
               </div>
-              <button type="submit" className="self-end px-8 py-3 bg-red-500 text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 mt-4">
-                Send Message
+
+              {/* Error message */}
+              {status === 'error' && (
+                <p className="text-red-400 text-sm font-inter">
+                  Something went wrong. Please try again or email directly.
+                </p>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="self-end px-8 py-3 bg-red-500 text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status === 'sending' ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
@@ -75,6 +131,14 @@ export default function Contact() {
       <div className="absolute top-10 right-10 w-20 h-20 rounded-full border-4 border-dashed border-red-500/40 flex items-center justify-center animate-spin" style={{ animationDuration: '20s' }}>
         <span className="text-red-500 text-2xl">★</span>
       </div>
+
+      {/* Fade-in keyframes */}
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
+      `}</style>
     </section>
   );
 }

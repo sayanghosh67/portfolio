@@ -18,6 +18,7 @@ export default function Hero() {
       stagger: 0.18,
       ease: 'power4.out',
       delay: 0.4,
+      immediateRender: false,
     });
     gsap.from('.hero-sub', {
       y: 40,
@@ -26,6 +27,7 @@ export default function Hero() {
       stagger: 0.12,
       ease: 'power3.out',
       delay: 1,
+      immediateRender: false,
     });
   }, []);
 

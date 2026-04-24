@@ -16,30 +16,170 @@ gsap.registerPlugin(ScrollTrigger);
 // ── Loading Screen ─────────────────────────────────────────────
 function Loader({ onDone }) {
   const loaderRef = useRef(null);
-  const textRef = useRef(null);
+  const photoRef = useRef(null);
+  const firstNameRef = useRef(null);
+  const lastNameRef = useRef(null);
+  const lineRef = useRef(null);
+  const taglineRef = useRef(null);
+  const progressRef = useRef(null);
+  const progressBarRef = useRef(null);
+  const overlayRef = useRef(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({
-      onComplete: () => onDone(),
+    const frameId = requestAnimationFrame(() => {
+      // Initial states
+      gsap.set(photoRef.current, { scale: 1.2, opacity: 0 });
+      gsap.set(firstNameRef.current, { y: 60, opacity: 0 });
+      gsap.set(lastNameRef.current, { y: 60, opacity: 0 });
+      gsap.set(lineRef.current, { scaleX: 0 });
+      gsap.set(taglineRef.current, { opacity: 0, y: 15 });
+      gsap.set(progressRef.current, { opacity: 0 });
+      gsap.set(progressBarRef.current, { scaleX: 0 });
+
+      const tl = gsap.timeline({ onComplete: () => onDone() });
+
+      tl
+        // Photo fades in with slow zoom
+        .to(photoRef.current, {
+          scale: 1,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power2.out',
+        })
+        // First name slides up
+        .to(firstNameRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+        }, '-=0.7')
+        // Red line draws across
+        .to(lineRef.current, {
+          scaleX: 1,
+          duration: 0.6,
+          ease: 'power2.inOut',
+        }, '-=0.4')
+        // Last name slides up
+        .to(lastNameRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+        }, '-=0.4')
+        // Tagline fades in
+        .to(taglineRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+        }, '-=0.3')
+        // Progress bar
+        .to(progressRef.current, {
+          opacity: 1,
+          duration: 0.2,
+        }, '-=0.3')
+        .to(progressBarRef.current, {
+          scaleX: 1,
+          duration: 1,
+          ease: 'power1.inOut',
+        })
+        // Hold for a beat
+        .to({}, { duration: 0.15 })
+        // Fade to black then slide up
+        .to(overlayRef.current, {
+          opacity: 1,
+          duration: 0.5,
+          ease: 'power2.inOut',
+        })
+        .to(loaderRef.current, {
+          yPercent: -100,
+          duration: 0.8,
+          ease: 'power4.inOut',
+        });
     });
-    tl.from(textRef.current, { opacity: 0, y: 30, duration: 0.5, ease: 'power2.out' })
-      .to(textRef.current, { opacity: 0, y: -30, duration: 0.4, ease: 'power2.in', delay: 0.6 })
-      .to(loaderRef.current, { yPercent: -100, duration: 0.7, ease: 'power4.inOut' });
+
+    return () => cancelAnimationFrame(frameId);
   }, [onDone]);
 
   return (
-    <div
-      ref={loaderRef}
-      className="fixed inset-0 bg-black flex items-center justify-center z-[9999] overflow-hidden"
-    >
-      <div ref={textRef} className="text-center">
-        <h1 className="font-anton text-5xl md:text-8xl text-white tracking-widest uppercase">
-          Sayan <span className="text-red-500">Ghosh</span>
-        </h1>
-        <p className="font-inter text-neutral-500 text-sm mt-4 tracking-[0.4em] uppercase">
-          Loading Portfolio...
-        </p>
+    <div ref={loaderRef} className="fixed inset-0 z-[9999] overflow-hidden bg-black">
+      {/* Background photo — large, moody, full-screen */}
+      <div
+        ref={photoRef}
+        className="absolute inset-0 z-0"
+        style={{ opacity: 0 }}
+      >
+        <img
+          src={`${import.meta.env.BASE_URL}sayan.jpg`}
+          alt="Sayan Ghosh"
+          className="w-full h-full object-cover object-top"
+          style={{ filter: 'brightness(0.25) contrast(1.15) saturate(0.6)' }}
+        />
+        {/* Dark + red tint overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.95) 100%), linear-gradient(135deg, rgba(239,68,68,0.07) 0%, transparent 60%)',
+          }}
+        />
       </div>
+
+      {/* Center content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-6">
+        {/* First name */}
+        <h1
+          ref={firstNameRef}
+          className="font-anton text-[16vw] md:text-[12vw] lg:text-[10vw] text-white uppercase leading-[0.85] tracking-[0.05em]"
+          style={{ opacity: 0 }}
+        >
+          SAYAN
+        </h1>
+
+        {/* Red divider line */}
+        <div
+          ref={lineRef}
+          className="w-24 md:w-40 h-[3px] bg-red-500 my-3 md:my-4 origin-center"
+          style={{ transform: 'scaleX(0)' }}
+        />
+
+        {/* Last name */}
+        <h1
+          ref={lastNameRef}
+          className="font-anton text-[16vw] md:text-[12vw] lg:text-[10vw] text-red-500 uppercase leading-[0.85] tracking-[0.2em]"
+          style={{ opacity: 0 }}
+        >
+          GHOSH
+        </h1>
+
+        {/* Tagline */}
+        <p
+          ref={taglineRef}
+          className="font-inter text-neutral-400 text-[10px] md:text-xs mt-8 md:mt-10 tracking-[0.6em] uppercase"
+          style={{ opacity: 0 }}
+        >
+          Software Developer &bull; CSE (AI)
+        </p>
+
+        {/* Progress bar */}
+        <div
+          ref={progressRef}
+          className="mt-5 w-24 md:w-40 h-[1px] bg-neutral-800 overflow-hidden"
+          style={{ opacity: 0 }}
+        >
+          <div
+            ref={progressBarRef}
+            className="h-full bg-red-500 origin-left"
+            style={{ transform: 'scaleX(0)' }}
+          />
+        </div>
+      </div>
+
+      {/* Fade-out overlay */}
+      <div
+        ref={overlayRef}
+        className="absolute inset-0 bg-black z-20 pointer-events-none"
+        style={{ opacity: 0 }}
+      />
     </div>
   );
 }
@@ -126,6 +266,7 @@ function App() {
             opacity: 0,
             duration: 1,
             ease: 'power3.out',
+            immediateRender: false,
           });
         });
         section.querySelectorAll('p').forEach((p) => {
@@ -135,6 +276,7 @@ function App() {
             opacity: 0,
             duration: 0.8,
             ease: 'power2.out',
+            immediateRender: false,
           });
         });
       });
