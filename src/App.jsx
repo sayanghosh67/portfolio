@@ -6,6 +6,7 @@ import Cursor from './components/Cursor';
 import ThreeCanvas from './components/ThreeCanvas';
 import Navbar from './components/Navbar';
 import OverlayManager from './components/OverlayManager';
+import Assistant from './components/Assistant';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -255,6 +256,9 @@ function App() {
       <div className="scroll-track w-full">
         <OverlayManager />
       </div>
+
+      {/* AI Personal Assistant */}
+      <Assistant />
     </>
   );
 }

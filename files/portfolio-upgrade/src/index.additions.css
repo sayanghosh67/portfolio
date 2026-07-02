@@ -1,0 +1,47 @@
+/* ============================================================
+   PASTE THIS AT THE BOTTOM OF src/index.css
+   ============================================================ */
+
+/* Animated grain — subtly shifts the noise pattern each frame-group
+   so it reads as "film" rather than a static texture. */
+@keyframes grainShift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
+  30% { transform: translate(3%, 2%); }
+  50% { transform: translate(-1%, 3%); }
+  70% { transform: translate(2%, -2%); }
+  90% { transform: translate(-3%, 1%); }
+}
+.grain-anim {
+  animation: grainShift 1.2s steps(6) infinite;
+}
+
+/* Glow text utility for accents / hover states */
+.glow-red {
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 0.3);
+}
+
+/* Gradient reveal mask used for image hovers (Projects/Showcase) */
+.reveal-mask {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.6s cubic-bezier(0.83, 0, 0.17, 1);
+}
+.group:hover .reveal-mask {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* Respect users who've asked for less motion — kills the heavy stuff
+   (grain animation, cursor scale, parallax) without breaking layout. */
+@media (prefers-reduced-motion: reduce) {
+  .grain-anim { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Preloader body lock uses this while the curtain is up */
+body:not(.is-loaded) {
+  overflow: hidden;
+}

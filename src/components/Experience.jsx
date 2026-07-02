@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 const TIMELINE = [
   {
-    year: '2023 — Present',
+    year: '2024 — Present',
     title: 'B.Tech CSE (Artificial Intelligence)',
     org: 'University Education',
     description:
