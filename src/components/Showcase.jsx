@@ -23,7 +23,7 @@ const showcaseImages = [
 
 export default function Showcase() {
   return (
-    <section className="relative w-full bg-black py-32 px-8 md:px-20 z-10 overflow-hidden">
+    <section className="relative w-full bg-transparent py-32 px-8 md:px-20 z-10 overflow-hidden">
       <div className="mb-16">
         <h2 className="text-7xl md:text-[8rem] font-anton uppercase text-white leading-none">
           SHOW<span className="text-red-500">CASE</span>

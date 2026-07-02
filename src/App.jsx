@@ -4,12 +4,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Cursor from './components/Cursor';
 import ThreeCanvas from './components/ThreeCanvas';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Showcase from './components/Showcase';
-import Contact from './components/Contact';
+import Navbar from './components/Navbar';
+import OverlayManager from './components/OverlayManager';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -205,47 +201,10 @@ function ScrollProgressBar() {
   );
 }
 
-// ── Navbar ─────────────────────────────────────────────────────
-function Navbar() {
-  const navLinks = [
-    { label: 'About', id: 'about' },
-    { label: 'Skills', id: 'skills' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'Contact', id: 'contact' },
-  ];
-
-  const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 py-5 mix-blend-difference pointer-events-none">
-      <span
-        className="font-inter font-bold text-sm md:text-base text-white tracking-widest uppercase pointer-events-auto cursor-pointer"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      >
-        Sayan Ghosh
-      </span>
-      <div className="hidden md:flex items-center gap-8 pointer-events-auto">
-        {navLinks.map((link) => (
-          <button
-            key={link.id}
-            onClick={() => scrollTo(link.id)}
-            className="font-inter text-xs text-white tracking-[0.2em] uppercase hover:text-red-500 transition-colors duration-200 cursor-pointer"
-          >
-            {link.label}
-          </button>
-        ))}
-      </div>
-      <span className="font-inter text-sm text-white pointer-events-auto">2026</span>
-    </nav>
-  );
-}
 
 // ── App ────────────────────────────────────────────────────────
 function App() {
   const [loading, setLoading] = useState(true);
-  const mainRef = useRef(null);
 
   useEffect(() => {
     if (loading) return;
@@ -255,36 +214,31 @@ function App() {
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
 
-    // Scroll-triggered animations
-    const sections = mainRef.current?.querySelectorAll('section');
-    if (sections) {
-      sections.forEach((section) => {
-        section.querySelectorAll('h2, h1, h3').forEach((h) => {
-          gsap.from(h, {
-            scrollTrigger: { trigger: h, start: 'top 85%', toggleActions: 'play none none none' },
-            y: 80,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out',
-            immediateRender: false,
-          });
-        });
-        section.querySelectorAll('p').forEach((p) => {
-          gsap.from(p, {
-            scrollTrigger: { trigger: p, start: 'top 90%', toggleActions: 'play none none none' },
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power2.out',
-            immediateRender: false,
-          });
+    // Scroll-triggered typography animations
+    const sections = document.querySelectorAll('.scroll-track section');
+    sections.forEach((section) => {
+      section.querySelectorAll('h2, h1, h3').forEach((h) => {
+        gsap.from(h, {
+          scrollTrigger: { trigger: h, start: 'top 85%', toggleActions: 'play none none none' },
+          y: 80,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
         });
       });
-    }
+      section.querySelectorAll('p').forEach((p) => {
+        gsap.from(p, {
+          scrollTrigger: { trigger: p, start: 'top 90%', toggleActions: 'play none none none' },
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+        });
+      });
+    });
 
     return () => {
       lenis.destroy();
-      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, [loading]);
 
@@ -294,16 +248,13 @@ function App() {
       <ScrollProgressBar />
       <Cursor />
       <Navbar />
+      {/* 3D Canvas fixed in background */}
       <ThreeCanvas />
 
-      <main ref={mainRef} className="relative z-10 w-full min-h-screen cursor-none">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Showcase />
-        <Contact />
-      </main>
+      {/* HTML Content (scrolls naturally over the fixed canvas) */}
+      <div className="scroll-track w-full">
+        <OverlayManager />
+      </div>
     </>
   );
 }

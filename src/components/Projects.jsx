@@ -161,7 +161,7 @@ export default function Projects() {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <section id="projects" className="relative w-full bg-black py-32 px-8 md:px-20 z-10 overflow-hidden">
+    <section id="projects" className="relative w-full bg-transparent py-32 px-8 md:px-20 z-10 overflow-hidden">
       {/* Torn paper top */}
       <div className="absolute top-0 left-0 w-[120%] h-20 bg-red-500 clip-paper rotate-180 -translate-y-1 pointer-events-none"></div>
 
